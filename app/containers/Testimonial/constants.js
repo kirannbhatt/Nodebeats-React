@@ -1,0 +1,27 @@
+/*
+ *
+ * Testimonial constants
+ *
+ */
+
+export const TESTIMONIAL_FETCH = 'app/Testimonial/TESTIMONIAL_FETCH';
+export const TESTIMONIAL_FETCH_SUCCESS =
+  'app/Testimonial/TESTIMONIAL_FETCH_SUCCESS';
+export const TESTIMONIAL_FETCH_ERROR =
+  'app/Testimonial/TESTIMONIAL_FETCH_ERROR';
+export const ADD_TESTIMONIAL_REQUEST =
+  'app/Testimonial/ADD_TESTIMONIAL_REQUEST';
+export const ADD_TESTIMONIAL_SUCCESS =
+  'app/Testimonial/ADD_TESTIMONIAL_SUCCESS';
+export const ADD_TESTIMONIAL_ERROR = 'app/Testimonial/ADD_TESTIMONIAL_ERROR';
+export const DELETE_TESTIMONIAL_REQUEST =
+  'app/Testimonial/DELETE_TESTIMONIAL_REQUEST';
+export const DELETE_TESTIMONIAL_SUCCESS =
+  'app/Testimonial/DELETE_TESTIMONIAL_SUCCESS';
+export const DELETE_TESTIMONIAL_ERROR =
+  'app/Testimonial/DELETE_TESTIMONIAL_ERROR';
+export const EDIT_TESTIMONIAL_REQUEST =
+  'app/Testimonial/EDIT_TESTIMONIAL_REQUEST';
+export const EDIT_TESTIMONIAL_SUCCESS =
+  'app/Testimonial/EDIT_TESTIMONIAL_SUCCESS';
+export const EDIT_TESTIMONIAL_ERROR = 'app/Testimonial/EDIT_TESTIMONIAL_ERROR';

@@ -42,6 +42,9 @@ function SideBar() {
         <Menu.Item>
           <NavLink to="/admin/news">News</NavLink>
         </Menu.Item>
+        <Menu.Item>
+          <NavLink to="/admin/newscategory">News Category</NavLink>
+        </Menu.Item>
       </Sidebar>
     </div>
   );

@@ -19,8 +19,12 @@ const selectNewsCategoryDomain = state =>
 const makeSelectNewsCategory = () =>
   createSelector(
     selectNewsCategoryDomain,
-    substate => substate.toJS(),
+    substate => substate.get('newsCategoryResponse'),
   );
-
+const   makeSelectDeleteNewsCategory = () =>
+  createSelector(
+    selectNewsCategoryDomain,
+    substate => substate.get('deleteCategoryResponse'),
+  );
 export default makeSelectNewsCategory;
-export { selectNewsCategoryDomain };
+export { makeSelectDeleteNewsCategory, selectNewsCategoryDomain };

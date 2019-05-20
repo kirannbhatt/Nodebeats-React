@@ -19,6 +19,8 @@ import TestimonialEditForm from 'containers/TestimonialEditForm/Loadable';
 import Blog from 'containers/Blog/Loadable';
 import Newss from 'containers/Newss/Loadable';
 import NewsForm from 'containers/NewsForm/Loadable';
+import NewsCategory from 'containers/NewsCategory/Loadable';
+import NewsCategoryForm from 'containers/NewsCategoryForm/Loadable';
 
 const mapStateToProps = createStructuredSelector({
   location: makeSelectLocation(),
@@ -92,8 +94,24 @@ class AdminDashboard extends React.Component {
                 <Route path="/admin/blog" component={Blog} />
                 <Route path="/admin/news" component={Newss} />
                 <Route exact path="/admin/newsform" component={NewsForm} />
-                <Route path="/admin/newsform/:edit_id" component={NewsForm} />
-
+                <Route
+                  path="/admin/newsform/:edit_id"
+                  component={NewsForm}
+                />
+                <Route
+                  path="/admin/newscategory"
+                  component={NewsCategory}
+                />
+                <Route
+                  exact
+                  path="/admin/newscategoryform"
+                  component={NewsCategoryForm}
+                />
+                <Route
+                  exact
+                  path="/admin/newscategoryform/:edit_id"
+                  component={NewsCategoryForm}
+                />
                 <Route component={NotFoundPage} />
               </Switch>
             </Segment>

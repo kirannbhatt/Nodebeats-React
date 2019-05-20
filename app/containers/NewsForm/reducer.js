@@ -12,6 +12,7 @@ export const initialState = fromJS({
   newsResponse: {},
   editResponse: {},
   addResponse: {},
+  categoryResponse: {},
 });
 
 function newsFormReducer(state = initialState, action) {
@@ -57,6 +58,20 @@ function newsFormReducer(state = initialState, action) {
       return state.merge({
         loading: false,
         editResponse: action.error,
+      });
+    case Type.GET_NEWS_CATEGORY:
+      return state.merge({
+        loading: true,
+      });
+    case Type.GET_NEWS_CATEGORY_SUCCESS:
+      return state.merge({
+        loading: false,
+        categoryResponse: action.response,
+      });
+    case Type.GET_NEWS_CATEGORY_ERROR:
+      return state.merge({
+        loading: false,
+        categoryResponse: action.error,
       });
     default:
       return state;

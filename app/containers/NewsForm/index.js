@@ -14,10 +14,13 @@ import { compose } from 'redux';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import makeSelectNewsForm, { makeSelectNewsById } from './selectors';
+import makeSelectNewsForm, {
+  makeSelectNewsById,
+  makeSelectNewsCategory,
+} from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import { addNews, getNewsById, editNews } from './actions';
+import { addNews, getNewsById, editNews, getNewsCategory } from './actions';
 import { Segment, Form, Button } from 'semantic-ui-react';
 
 /* eslint-disable react/prefer-stateless-function */
@@ -37,6 +40,7 @@ export class NewsForm extends React.Component {
   }
 
   componentDidMount() {
+    this.props.getNewsCategory();
     const id =
       this.props.match && this.props.match.params.edit_id
         ? this.props.match.params.edit_id
@@ -82,7 +86,6 @@ export class NewsForm extends React.Component {
     }
   };
 
-  handleFileChange = () => {};
   render() {
     return (
       <div>
@@ -140,6 +143,7 @@ export class NewsForm extends React.Component {
 const mapStateToProps = createStructuredSelector({
   newsForm: makeSelectNewsForm(),
   news: makeSelectNewsById(),
+  category: makeSelectNewsCategory(),
 });
 
 function mapDispatchToProps(dispatch) {
@@ -147,6 +151,7 @@ function mapDispatchToProps(dispatch) {
     addNews: news => dispatch(addNews(news)),
     getNewsById: id => dispatch(getNewsById(id)),
     editNews: (news, id) => dispatch(editNews(news, id)),
+    getNewsCategory: () => dispatch(getNewsCategory()),
   };
 }
 

@@ -36,7 +36,6 @@ export class NewsCategory extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.newsCategory !== this.props.newsCategory) {
       const newsCategory = nextProps.newsCategory.toJS();
-      console.log(newsCategory);
       this.setState({
         newsCategory: newsCategory,
       });
@@ -71,7 +70,7 @@ export class NewsCategory extends React.Component {
         </Segment>
         <Divider horizontal>News Category </Divider>
         <Segment placeholder>
-          <Table celled>
+          <Table>
             <Table.Header>
               <Table.Row>
                 <Table.HeaderCell>S.N.</Table.HeaderCell>
@@ -91,8 +90,7 @@ export class NewsCategory extends React.Component {
                     <Table.Cell>{element.categoryName}</Table.Cell>
                     <Table.Cell>{element.categoryDescription}</Table.Cell>
                     <Table.Cell>{element.urlSlogCategory}</Table.Cell>
-                    <Table.Cell>{element.active}</Table.Cell>
-
+                    <Table.Cell>{element.active ? 'True' : 'False'}</Table.Cell>
                     <Table.Cell>
                       <div className="ui two buttons">
                         <Button

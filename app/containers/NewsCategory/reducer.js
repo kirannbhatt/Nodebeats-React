@@ -21,7 +21,6 @@ function newsCategoryReducer(state = initialState, action) {
         loading: true,
       });
     case Type.FETCH_NEWS_CATEGORY_SUCCESS:
-      console.log(action.response, '>>> this is the response from action');
       return state.merge({
         loading: false,
         newsCategoryResponse: action.response,

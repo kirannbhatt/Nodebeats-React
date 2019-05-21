@@ -25,5 +25,10 @@ const makeSelectNewsById = () =>
     selectNewsFormDomain,
     substate => substate.get('newsResponse'),
   );
+const makeSelectNewsCategory = () =>
+  createSelector(
+    selectNewsFormDomain,
+    substate => substate.get('categoryResponse'),
+  );
 export default makeSelectNewsForm;
-export { makeSelectNewsById, selectNewsFormDomain };
+export { makeSelectNewsCategory, makeSelectNewsById, selectNewsFormDomain };

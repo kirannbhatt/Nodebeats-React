@@ -15,13 +15,7 @@ function* fetchNewsSaga() {
   yield call(XcelTrip.get(apiUri, fetchNewsSuccess, fetchNewsError));
 }
 
-// function* redirectOnSuccess() {
-//   yield take(Type.DELETE_NEWS_SUCCESS);
-//   yield put(push('/admin'));
-// }
-
 function* deleteNewsSaga(action) {
-  // const successWatcher = yield fork(redirectOnSuccess);
   yield fork(
     XcelTrip.patch(
       `${apiUri}/${action.id}`,

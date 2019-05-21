@@ -56,9 +56,21 @@ function* editNewsRequest(action) {
   );
 }
 
+function* getNewsCategory() {
+  yield fork(
+    XcelTrip.get(
+      'newscategory',
+      Action.getNewsCategorySuccess,
+      Action.getNewsCategoryError,
+      token,
+    ),
+  );
+}
+
 // Individual exports for testing
 export default function* newsFormSaga() {
   yield takeLatest(Type.ADD_NEWS_REQUEST, addNewsRequest);
   yield takeLatest(Type.GET_NEWS_BY_ID_REQUEST, getNewsRequest);
   yield takeLatest(Type.EDIT_NEWS_REQUEST, editNewsRequest);
+  yield takeLatest(Type.GET_NEWS_CATEGORY, getNewsCategory);
 }

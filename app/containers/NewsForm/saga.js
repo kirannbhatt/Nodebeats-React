@@ -59,7 +59,7 @@ function* editNewsRequest(action) {
 function* getNewsCategory() {
   yield fork(
     XcelTrip.get(
-      '/newscategory',
+      'newscategory',
       Action.getNewsCategorySuccess,
       Action.getNewsCategoryError,
       token,

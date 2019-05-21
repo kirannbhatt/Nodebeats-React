@@ -8,7 +8,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
-import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
@@ -21,7 +20,7 @@ import makeSelectNewsForm, {
 import reducer from './reducer';
 import saga from './saga';
 import { addNews, getNewsById, editNews, getNewsCategory } from './actions';
-import { Segment, Form, Button } from 'semantic-ui-react';
+import { Segment, Form, Button, Select } from 'semantic-ui-react';
 
 /* eslint-disable react/prefer-stateless-function */
 export class NewsForm extends React.Component {
@@ -33,19 +32,22 @@ export class NewsForm extends React.Component {
         newsDescription: '',
         newsAuthor: '',
         newsDate: new Date(),
-        categoryID: '578dd25436e469c351f17cd6',
+        categoryID: '',
+        // categoryName: ''
+        // category: null,
       },
       imageName: null,
+      // categoryID: null,
     };
   }
 
   componentDidMount() {
-    this.props.getNewsCategory();
     const id =
       this.props.match && this.props.match.params.edit_id
         ? this.props.match.params.edit_id
         : null;
     id ? this.props.getNewsById(id) : null;
+    this.props.getNewsCategories();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -57,8 +59,14 @@ export class NewsForm extends React.Component {
           newsDescription: newsData.newsDescription,
           newsAuthor: newsData.newsAuthor,
           newsDate: new Date(),
-          categoryID: '578dd25436e469c351f17cd6',
+          categoryID: newsData.categoryID,
         },
+      });
+    }
+    if (nextProps.category !== this.props.category) {
+      const categories = nextProps.category.toJS();
+      this.setState({
+        category: categories,
       });
     }
   }
@@ -72,7 +80,14 @@ export class NewsForm extends React.Component {
       news,
     });
   };
-
+  handleSelectChange = (e, { value }) => {
+    this.setState({
+      news: {
+        ...this.state.news,
+        categoryID: value,
+      },
+    });
+  };
   handleSubmit = e => {
     e.preventDefault();
     const id =
@@ -87,6 +102,16 @@ export class NewsForm extends React.Component {
   };
 
   render() {
+    const options = [];
+    if (this.state.category) {
+      this.state.category.map((element, index) => {
+        options.push({
+          key: element.categoryName,
+          text: element.categoryName,
+          value: element._id,
+        });
+      });
+    }
     return (
       <div>
         <Helmet>
@@ -115,11 +140,12 @@ export class NewsForm extends React.Component {
               onChange={this.handleChange}
               value={this.state.news.newsAuthor}
             />
-            <Form.Input
-              placeholder="CategoryId"
+            <Select
               name="categoryID"
-              onChange={this.handleChange}
-              value={this.state.news.categoryID}
+              placeholder="select category"
+              options={options}
+              onChange={this.handleSelectChange}
+              value={this.state.categoryID}
             />
             <Form.Input
               type="file"
@@ -136,10 +162,6 @@ export class NewsForm extends React.Component {
   }
 }
 
-// NewsForm.propTypes = {
-//   dispatch: PropTypes.func.isRequired,
-// };
-
 const mapStateToProps = createStructuredSelector({
   newsForm: makeSelectNewsForm(),
   news: makeSelectNewsById(),
@@ -151,7 +173,7 @@ function mapDispatchToProps(dispatch) {
     addNews: news => dispatch(addNews(news)),
     getNewsById: id => dispatch(getNewsById(id)),
     editNews: (news, id) => dispatch(editNews(news, id)),
-    getNewsCategory: () => dispatch(getNewsCategory()),
+    getNewsCategories: () => dispatch(getNewsCategory()),
   };
 }
 

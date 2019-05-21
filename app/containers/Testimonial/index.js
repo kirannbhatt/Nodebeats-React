@@ -84,7 +84,6 @@ export class Testimonial extends React.Component {
           <title>Testimonial</title>
           <meta name="description" content="Testimonial" />
         </Helmet>
-        <ToastContainer />
         <Segment>
           <Button color="violet" onClick={this.addNewTestimonial}>
             Add New Testimonial
